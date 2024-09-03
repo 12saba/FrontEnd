@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Counter from "./Count";
 const App = () => {
-  const [items, setItem] = useState(["Jeans", "Shirt", "Jacket", "Caps"]);
+  const [items, setItem] = useState(["Jeans"]);
   const [userInput, setUserInput] = useState("");
   const inputChangeHandler = (e) => {
     setUserInput(e.target.value);
@@ -10,6 +10,7 @@ const App = () => {
     setItem([...items, userInput]);
     setUserInput("");
   };
+
   return (
     <>
       <input
@@ -19,7 +20,7 @@ const App = () => {
       />
       <button onClick={addItemHandler}>Add Item</button>
       {items.map((item, index, arr) => {
-        return <Counter itemName={item} />;
+        return <Counter key={index} itemName={item} />;
       })}
     </>
   );
