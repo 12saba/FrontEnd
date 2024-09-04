@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-
+import PropTypes from "prop-types";
 const Counter = (props) => {
   const [count, setCount] = useState(7);
 
   const clickHandler = () => {
     setCount(count + 1);
   };
-  useEffect(() => {
-    console.log("usereffact afer count", count);
-    return () => {
-      console.log("usereffact for cleanUp", count);
-    };
-  }, [count]);
+  // useEffect(() => {
+  //   console.log("usereffact afer count", count);
+  //   return () => {
+  //     console.log("usereffact for cleanUp", count);
+  //   };
+  // }, [count]);
   return (
     <>
       <h1>{props.itemName}</h1>
@@ -24,8 +24,14 @@ const Counter = (props) => {
       >
         Decrement
       </button>
+      <button onClick={props.onDelete}>Delete</button>
+      <button onClick={() => props.xyz(8)}>XYZ</button>
     </>
   );
+};
+Counter.propTypes = {
+  itemName: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Counter;
