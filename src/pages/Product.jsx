@@ -3,11 +3,13 @@ import axios from "axios";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]); // Ensure products is declared here
+  const [searchedProducts, setSearchedProducts] = useState([]); // Ensure products is declared here
 
   const fetchProducts = async () => {
     try {
       const response = await axios.get("https://fakestoreapi.com/products");
       setProducts(response.data); // Update state with the fetched products
+      setSearchedProducts(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -16,13 +18,24 @@ const ProductsPage = () => {
   useEffect(() => {
     fetchProducts(); // Fetch products when the component mounts
   }, []);
-
+  const searchHandler = (e) => {
+    const userInput = e.target.value;
+    const searchResult = products.filter((item, index) => {
+      if (item.title.toLowerCase().includes(userInput.toLowerCase())) {
+        return true;
+      }
+    });
+    setSearchedProducts(searchResult);
+    console.log(searchResult);
+  };
   return (
     <div>
       <h1>Products</h1>
+      <input onChange={searchHandler} placeholder="search"></input>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {products.map(
+        {searchedProducts.map(
           (
+            ///filter always return true and wich arry returen true ill show result
             product // Use products from state here
           ) => (
             <div
