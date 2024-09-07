@@ -4,7 +4,7 @@ import axios from "axios";
 const ProductsPage = () => {
   const [products, setProducts] = useState([]); // Ensure products is declared here
   const [searchedProducts, setSearchedProducts] = useState([]); // Ensure products is declared here
-
+  const [userInput, setuserInput] = useState("");
   const fetchProducts = async () => {
     try {
       const response = await axios.get("https://fakestoreapi.com/products");
@@ -27,6 +27,17 @@ const ProductsPage = () => {
     });
     setSearchedProducts(searchResult);
     console.log(searchResult);
+  };
+  const deleteItem = (id) => {
+    const updatedItems = products.filter((currentProduct) => {
+      return currentProduct.id !== id;
+      <>
+        <h1>no data found</h1>
+      </>;
+    });
+    setProducts(updatedItems);
+    setSearchedProducts(updatedItems);
+    setuserInput(userInput);
   };
   return (
     <div>
@@ -55,6 +66,13 @@ const ProductsPage = () => {
               />
               <h2 style={{ fontSize: "16px" }}>{product.title}</h2>
               <p>${product.price}</p>
+              <button
+                onClick={() => {
+                  deleteItem(product.id);
+                }}
+              >
+                Delete
+              </button>
             </div>
           )
         )}

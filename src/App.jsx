@@ -4,8 +4,8 @@ import ProductsPage from "./pages/Product";
 const App = () => {
   return (
     <>
-      <Home />/ //
-      {/* //  <ProductsPage /> */}
+      {/* <Home /> */}
+      <ProductsPage />
     </>
   );
 };

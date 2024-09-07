@@ -4,7 +4,20 @@ const Counter = (props) => {
   const [count, setCount] = useState(7);
 
   const clickHandler = () => {
-    setCount(count + 1);
+    // setCount(count + 1);
+    // setCount(count + 1);
+    // setCount(count + 1);
+
+    setCount((prevState) => {
+      return prevState + 1;
+    });
+    setCount((prevState) => {
+      return prevState + 1;
+    });
+    setCount((prevState) => {
+      return prevState + 1;
+    });
+    // all set function async function
   };
   // useEffect(() => {
   //   console.log("usereffact afer count", count);
