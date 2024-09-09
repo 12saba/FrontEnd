@@ -65,6 +65,9 @@ const ProductsPage = () => {
                 style={{ width: "100px", height: "100px", objectFit: "cover" }}
               />
               <h2 style={{ fontSize: "16px" }}>{product.title}</h2>
+              <p style={{ fontSize: "11px", color: "#666", margin: "15px" }}>
+                {product.discription}
+              </p>
               <p>${product.price}</p>
               <button
                 onClick={() => {
